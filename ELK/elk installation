@@ -69,7 +69,7 @@ wget https://artifacts.elastic.co/downloads/logstash/logstash-8.4.3-linux-x86_64
 
 tar xvf logstash-8.4.3-linux-x86_64.tar.gz 
 
-sudo mv logstash-8.4.3 /etc/logstash 
+sudo mv logstash-8.4.3 /etc/logstash
 
 # Configure Logstash
 sudo vi /etc/logstash/config/logstash.yml
@@ -78,6 +78,9 @@ Below lines would be added,
 path.data: /var/lib/logstash
 path.config: /etc/logstash/config/*.conf
 path.logs: /var/log/logstash
+
+cd /etc/logstash/bin
+sudo ./logstash
 
 # Install Filebeat
 sudo apt install filebeat
@@ -102,3 +105,14 @@ sudo systemctl enable filebeat
 
 # Test elastic search
 curl -XGET http://localhost:9200/_cat/indices?v
+
+========================================================
+Now we can check logs in nginx, we have to enable in filebeats. Below are steps :-
+
+cd /etc/filebeat/modules.d
+ls
+sudo filebeat modules enable nginx
+ls
+=========================================
+
+
