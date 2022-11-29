@@ -107,12 +107,24 @@ sudo systemctl enable filebeat
 curl -XGET http://localhost:9200/_cat/indices?v
 
 ========================================================
-Now we can check logs in nginx, we have to enable in filebeats. Below are steps :-
+Now we can check logs in nginx, we have to enable ninx in filebeats. Below are steps :-
 
 cd /etc/filebeat/modules.d
 ls
 sudo filebeat modules enable nginx
 ls
+
+cd /etc/logstash/config
+vi nginx.conf  //copy file content from before a file of this folder and save in this file
+cd ../bin
+sudo ./logstash
+
+after this you can check index created or not using command
+curl -XGET http://localhost:9200/_cat/indices?v
+
+
+
+
 =========================================
 
 
